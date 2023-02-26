@@ -1,9 +1,6 @@
 import 'dart:convert';
-
 import 'package:assigment_project/add_food.dart';
 import 'package:assigment_project/third_page.dart';
-
-
 import 'package:flutter/material.dart';
 import 'first_page.dart';
 import 'package:http/http.dart' as http;
@@ -494,6 +491,7 @@ class _SecondPageState extends State<SecondPage> {
                   if (snapshot != null && snapshot.hasData) {
                     return ListView.builder(
                       shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
                       itemBuilder: (context, index) {
                         return InkWell(
                           onTap: () {
@@ -687,12 +685,12 @@ class _SecondPageState extends State<SecondPage> {
 
 Future<http.Response> getFood() async {
   var response = await http
-      .get(Uri.parse("https://630856eb46372013f57ad4b2.mockapi.io/friends"));
+      .get(Uri.parse("https://637f5cd65b1cc8d6f942aebf.mockapi.io/food"));
   return response;
 }
 
 Future<void> deleteFood(id) async {
   var response1 = await http.delete(
-      Uri.parse("https://630856eb46372013f57ad4b2.mockapi.io/friends"));
+      Uri.parse("https://637f5cd65b1cc8d6f942aebf.mockapi.io/food/$id"));
 }
 

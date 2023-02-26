@@ -172,12 +172,12 @@ class _ThirdPageState extends State<ForthPage> {
 
   Future<http.Response> getFood() async {
     var response = await http
-        .get(Uri.parse("https://630856eb46372013f57ad4b2.mockapi.io/friends"));
+        .get(Uri.parse("https://637f5cd65b1cc8d6f942aebf.mockapi.io/food"));
     return response;
   }
 
   Future<void> deleteFood(id) async {
     var response1 = await http.delete(
-        Uri.parse("https://630856eb46372013f57ad4b2.mockapi.io/friends/$id"));
+        Uri.parse("https://637f5cd65b1cc8d6f942aebf.mockapi.io/food/$id"));
   }
 }
