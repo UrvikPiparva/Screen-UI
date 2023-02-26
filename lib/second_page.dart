@@ -1,8 +1,12 @@
+import 'dart:convert';
 
+import 'package:assigment_project/add_food.dart';
 import 'package:assigment_project/third_page.dart';
-import 'package:flutter/material.dart';
 
+
+import 'package:flutter/material.dart';
 import 'first_page.dart';
+import 'package:http/http.dart' as http;
 
 class SecondPage extends StatefulWidget {
   @override
@@ -181,310 +185,443 @@ class _SecondPageState extends State<SecondPage> {
                   ),
                 ),
               ),
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 30, left: 20),
-                    child: Column(
-                      children: [
-                        Stack(
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(color: Colors.white),
-                              child: Padding(
-                                padding: const EdgeInsets.only(top: 50),
-                                child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(150),
-                                    child: Image.asset(
-                                      'assets/images/chicken brest (1).jpg',
-                                      height: 150,
-                                      width: 150,
-                                    )),
+              // Row(
+              //   children: [
+              //     Padding(
+              //       padding: const EdgeInsets.only(top: 30, left: 20),
+              //       child: Column(
+              //         children: [
+              //           Stack(
+              //             children: [
+              //               Container(
+              //                 decoration: BoxDecoration(color: Colors.white),
+              //                 child: Padding(
+              //                   padding: const EdgeInsets.only(top: 50),
+              //                   child: ClipRRect(
+              //                       borderRadius: BorderRadius.circular(150),
+              //                       child: Image.asset(
+              //                         'assets/images/chicken brest (1).jpg',
+              //                         height: 150,
+              //                         width: 150,
+              //                       )),
+              //                 ),
+              //               ),
+              //               Padding(
+              //                 padding: const EdgeInsets.only(left: 120),
+              //                 child: Icon(
+              //                   Icons.favorite,
+              //                   color: Colors.red,
+              //                 ),
+              //               ),
+              //             ],
+              //           ),
+              //           Padding(
+              //             padding: const EdgeInsets.only(top: 20),
+              //             child: Text(
+              //               "BBQ Chicken Breast",
+              //               style: TextStyle(
+              //                   fontWeight: FontWeight.bold, color: Colors.black),
+              //             ),
+              //           ),
+              //           Row(
+              //             mainAxisSize: MainAxisSize.min,
+              //             children: List.generate(
+              //               5,
+              //                   (index) {
+              //                 return Icon(
+              //                   Icons.star,
+              //                   color: Colors.yellow,
+              //                 );
+              //               },
+              //             ),
+              //           ),
+              //           Padding(
+              //             padding: const EdgeInsets.all(8.0),
+              //             child: RichText(
+              //               text: TextSpan(
+              //                 children: [
+              //                   TextSpan(
+              //                       text: "-47 ",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)
+              //                   ),
+              //                   WidgetSpan(
+              //                     child: ClipRRect(
+              //                       borderRadius: BorderRadius.circular(50),
+              //                       child: Padding(
+              //                         padding: const EdgeInsets.only(left: 90),
+              //                         child: Container(
+              //                             color: Colors.brown,
+              //                             child: Icon(Icons.add, size: 25, color: Colors.white,)),
+              //                       ),
+              //                     ),
+              //                   ),
+              //                 ],
+              //               ),
+              //             ),
+              //           )
+              //         ],
+              //       ),
+              //     ),
+              //     // Padding(
+              //     //   padding: const EdgeInsets.only(top: 30),
+              //     //   child: Column(
+              //     //     children: [
+              //     //       Stack(
+              //     //         children: [
+              //     //           Container(
+              //     //             decoration: BoxDecoration(color: Colors.white),
+              //     //             child: Padding(
+              //     //               padding: const EdgeInsets.only(top: 50),
+              //     //               child: ClipRRect(
+              //     //                   borderRadius: BorderRadius.circular(150),
+              //     //                   child: Image.asset(
+              //     //                     'assets/images/bacon burger.jpg',
+              //     //                     height: 150,
+              //     //                     width: 150,
+              //     //                   )),
+              //     //             ),
+              //     //           ),
+              //     //           Padding(
+              //     //             padding: const EdgeInsets.only(left: 120),
+              //     //             child: Icon(
+              //     //               Icons.favorite,
+              //     //               color: Colors.red,
+              //     //             ),
+              //     //           ),
+              //     //         ],
+              //     //       ),
+              //     //       Padding(
+              //     //         padding: const EdgeInsets.only(top: 20),
+              //     //         child: Text(
+              //     //           "Bacon Burger",
+              //     //           style: TextStyle(
+              //     //               fontWeight: FontWeight.bold, color: Colors.black),
+              //     //         ),
+              //     //       ),
+              //     //       Row(
+              //     //         mainAxisSize: MainAxisSize.min,
+              //     //         children: List.generate(
+              //     //           5,
+              //     //               (index) {
+              //     //             return Icon(
+              //     //               Icons.star,
+              //     //               color: Colors.yellow,
+              //     //             );
+              //     //           },
+              //     //         ),
+              //     //       ),
+              //     //       Padding(
+              //     //         padding: const EdgeInsets.all(8.0),
+              //     //         child: RichText(
+              //     //           text: TextSpan(
+              //     //             children: [
+              //     //               TextSpan(
+              //     //                   text: "-47 ",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)
+              //     //               ),
+              //     //               WidgetSpan(
+              //     //                 child: ClipRRect(
+              //     //                   borderRadius: BorderRadius.circular(50),
+              //     //                   child: Padding(
+              //     //                     padding: const EdgeInsets.only(left: 90),
+              //     //                     child: Container(
+              //     //                         color: Colors.brown,
+              //     //                         child: Icon(Icons.add, size: 25, color: Colors.white,)),
+              //     //                   ),
+              //     //                 ),
+              //     //               ),
+              //     //             ],
+              //     //           ),
+              //     //         ),
+              //     //       )
+              //     //     ],
+              //     //   ),
+              //     // )
+              //   ],
+              // ),
+              // Row(
+              //   children: [
+              //     Padding(
+              //       padding: const EdgeInsets.only(top: 30, left: 20),
+              //       child: Column(
+              //         children: [
+              //           Stack(
+              //             children: [
+              //               Container(
+              //                 decoration: BoxDecoration(color: Colors.white),
+              //                 child: Padding(
+              //                   padding: const EdgeInsets.only(top: 50),
+              //                   child: ClipRRect(
+              //                       borderRadius: BorderRadius.circular(150),
+              //                       child: Image.asset(
+              //                         'assets/images/chicken brest (1).jpg',
+              //                         height: 150,
+              //                         width: 150,
+              //                       )),
+              //                 ),
+              //               ),
+              //               Padding(
+              //                 padding: const EdgeInsets.only(left: 120),
+              //                 child: Icon(
+              //                   Icons.favorite,
+              //                   color: Colors.red,
+              //                 ),
+              //               ),
+              //             ],
+              //           ),
+              //           Padding(
+              //             padding: const EdgeInsets.only(top: 20),
+              //             child: Text(
+              //               "BBQ Chicken Breast",
+              //               style: TextStyle(
+              //                   fontWeight: FontWeight.bold, color: Colors.black),
+              //             ),
+              //           ),
+              //           Row(
+              //             mainAxisSize: MainAxisSize.min,
+              //             children: List.generate(
+              //               5,
+              //                   (index) {
+              //                 return Icon(
+              //                   Icons.star,
+              //                   color: Colors.yellow,
+              //                 );
+              //               },
+              //             ),
+              //           ),
+              //           Padding(
+              //             padding: const EdgeInsets.all(8.0),
+              //             child: RichText(
+              //               text: TextSpan(
+              //                 children: [
+              //                   TextSpan(
+              //                       text: "-47 ",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)
+              //                   ),
+              //                   WidgetSpan(
+              //                     child: ClipRRect(
+              //                       borderRadius: BorderRadius.circular(50),
+              //                       child: Padding(
+              //                         padding: const EdgeInsets.only(left: 90),
+              //                         child: Container(
+              //                             color: Colors.brown,
+              //                             child: Icon(Icons.add, size: 25, color: Colors.white,)),
+              //                       ),
+              //                     ),
+              //                   ),
+              //                 ],
+              //               ),
+              //             ),
+              //           )
+              //         ],
+              //       ),
+              //     ),
+              //     Padding(
+              //       padding: const EdgeInsets.only(top: 30),
+              //       child: Column(
+              //         children: [
+              //           Stack(
+              //             children: [
+              //               Container(
+              //                 decoration: BoxDecoration(color: Colors.white),
+              //                 child: Padding(
+              //                   padding: const EdgeInsets.only(top: 50),
+              //                   child: ClipRRect(
+              //                       borderRadius: BorderRadius.circular(150),
+              //                       child: Image.asset(
+              //                         'assets/images/bacon burger.jpg',
+              //                         height: 150,
+              //                         width: 150,
+              //                       )),
+              //                 ),
+              //               ),
+              //               Padding(
+              //                 padding: const EdgeInsets.only(left: 120),
+              //                 child: Icon(
+              //                   Icons.favorite,
+              //                   color: Colors.red,
+              //                 ),
+              //               ),
+              //             ],
+              //           ),
+              //           Padding(
+              //             padding: const EdgeInsets.only(top: 20),
+              //             child: Text(
+              //               "Bacon Burger",
+              //               style: TextStyle(
+              //                   fontWeight: FontWeight.bold, color: Colors.black),
+              //             ),
+              //           ),
+              //           Row(
+              //             mainAxisSize: MainAxisSize.min,
+              //             children: List.generate(
+              //               5,
+              //                   (index) {
+              //                 return Icon(
+              //                   Icons.star,
+              //                   color: Colors.yellow,
+              //                 );
+              //               },
+              //             ),
+              //           ),
+              //           Padding(
+              //             padding: const EdgeInsets.all(8.0),
+              //             child: RichText(
+              //               text: TextSpan(
+              //                 children: [
+              //                   TextSpan(
+              //                       text: "-47 ",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)
+              //                   ),
+              //                   WidgetSpan(
+              //                     child: ClipRRect(
+              //                       borderRadius: BorderRadius.circular(50),
+              //                       child: Padding(
+              //                         padding: const EdgeInsets.only(left: 90),
+              //                         child: Container(
+              //                             color: Colors.brown,
+              //                             child: Icon(Icons.add, size: 25, color: Colors.white,)),
+              //                       ),
+              //                     ),
+              //                   ),
+              //                 ],
+              //               ),
+              //             ),
+              //           )
+              //         ],
+              //       ),
+              //     )
+              //   ],
+              // ),
+              FutureBuilder<http.Response>(
+                builder: (context, snapshot) {
+                  if (snapshot != null && snapshot.hasData) {
+                    return ListView.builder(
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) {
+                        return InkWell(
+                          onTap: () {
+                            Navigator.of(context)
+                                .push(
+                              MaterialPageRoute(
+                                builder: (context) => AddFood(
+                                    jsonDecode(snapshot.data!.body.toString())[index]),
                               ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 120),
-                              child: Icon(
-                                Icons.favorite,
-                                color: Colors.red,
-                              ),
-                            ),
-                          ],
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 20),
-                          child: Text(
-                            "BBQ Chicken Breast",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, color: Colors.black),
-                          ),
-                        ),
-                        Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: List.generate(
-                            5,
-                                (index) {
-                              return Icon(
-                                Icons.star,
-                                color: Colors.yellow,
-                              );
-                            },
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: RichText(
-                            text: TextSpan(
-                              children: [
-                                TextSpan(
-                                    text: "-47 ",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)
+                            )
+                                .then(
+                                  (value) {
+                                if (value == true) {
+                                  setState(() {});
+                                }
+                              },
+                            );
+                          },
+                          child: Column(
+                            children: [
+                              Container(
+                                padding: EdgeInsets.all(20),
+                                decoration: BoxDecoration(
+                                  // borderRadius: BorderRadius.circular(20)
                                 ),
-                                WidgetSpan(
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(50),
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(left: 90),
+                                height: 200,
+                                width: double.infinity,
+                                child: Image(
+                                    image: NetworkImage((jsonDecode(
+                                        snapshot.data!.body.toString())[index]
+                                    ['avatar'])
+                                        .toString())),
+                              ),
+                              Text(
+                                (jsonDecode(snapshot.data!.body.toString())[index]
+                                ['name'])
+                                    .toString(),
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w900,
+                                  fontSize: 20,
+                                ),
+                              ),
+                              Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: List.generate(
+                                  5,
+                                      (index) {
+                                    return Icon(
+                                      Icons.star,
+                                      color: Colors.yellow,
+                                    );
+                                  },
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    InkWell(
+                                      onTap: () {
+                                        Navigator.of(context)
+                                            .push(
+                                          MaterialPageRoute(
+                                            builder: (context) => AddFood(jsonDecode(
+                                                snapshot.data!.body.toString())[index]),
+                                          ),
+                                        )
+                                            .then(
+                                              (value) {
+                                            if (value == true) {
+                                              setState(() {});
+                                            }
+                                          },
+                                        );
+                                      },
                                       child: Container(
-                                          color: Colors.brown,
-                                          child: Icon(Icons.add, size: 25, color: Colors.white,)),
+                                        padding: EdgeInsets.all(15),
+                                        margin: EdgeInsets.all(10),
+                                        decoration: BoxDecoration(
+                                          // borderRadius: BorderRadius.circular(20),
+                                            border: Border.all(),
+                                            color: Colors.green),
+                                        child: Text(
+                                          "Edit",
+                                          style: TextStyle(color: Colors.white),
+                                        ),
+                                      ),
                                     ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 30),
-                    child: Column(
-                      children: [
-                        Stack(
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(color: Colors.white),
-                              child: Padding(
-                                padding: const EdgeInsets.only(top: 50),
-                                child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(150),
-                                    child: Image.asset(
-                                      'assets/images/bacon burger.jpg',
-                                      height: 150,
-                                      width: 150,
-                                    )),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 120),
-                              child: Icon(
-                                Icons.favorite,
-                                color: Colors.red,
-                              ),
-                            ),
-                          ],
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 20),
-                          child: Text(
-                            "Bacon Burger",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, color: Colors.black),
-                          ),
-                        ),
-                        Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: List.generate(
-                            5,
-                                (index) {
-                              return Icon(
-                                Icons.star,
-                                color: Colors.yellow,
-                              );
-                            },
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: RichText(
-                            text: TextSpan(
-                              children: [
-                                TextSpan(
-                                    text: "-47 ",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)
-                                ),
-                                WidgetSpan(
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(50),
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(left: 90),
+                                    SizedBox(
+                                      width: 15,
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+                                        deleteFood((jsonDecode(snapshot.data!.body
+                                            .toString())[index]['id']))
+                                            .then(
+                                              (value) {
+                                            setState(() {});
+                                          },
+                                        );
+                                      },
                                       child: Container(
-                                          color: Colors.brown,
-                                          child: Icon(Icons.add, size: 25, color: Colors.white,)),
+                                        padding: EdgeInsets.all(15),
+                                        margin: EdgeInsets.all(10),
+                                        decoration: BoxDecoration(
+                                          // borderRadius: BorderRadius.circular(20),
+                                            border: Border.all(),
+                                            color: Colors.red),
+                                        child: Text("Delete",
+                                            style: TextStyle(color: Colors.white)),
+                                      ),
                                     ),
-                                  ),
+                                  ],
                                 ),
-                              ],
-                            ),
+                              )
+                            ],
                           ),
-                        )
-                      ],
-                    ),
-                  )
-                ],
-              ),
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(top: 30, left: 20),
-                    child: Column(
-                      children: [
-                        Stack(
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(color: Colors.white),
-                              child: Padding(
-                                padding: const EdgeInsets.only(top: 50),
-                                child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(150),
-                                    child: Image.asset(
-                                      'assets/images/chicken brest (1).jpg',
-                                      height: 150,
-                                      width: 150,
-                                    )),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 120),
-                              child: Icon(
-                                Icons.favorite,
-                                color: Colors.red,
-                              ),
-                            ),
-                          ],
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 20),
-                          child: Text(
-                            "BBQ Chicken Breast",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, color: Colors.black),
-                          ),
-                        ),
-                        Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: List.generate(
-                            5,
-                                (index) {
-                              return Icon(
-                                Icons.star,
-                                color: Colors.yellow,
-                              );
-                            },
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: RichText(
-                            text: TextSpan(
-                              children: [
-                                TextSpan(
-                                    text: "-47 ",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)
-                                ),
-                                WidgetSpan(
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(50),
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(left: 90),
-                                      child: Container(
-                                          color: Colors.brown,
-                                          child: Icon(Icons.add, size: 25, color: Colors.white,)),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 30),
-                    child: Column(
-                      children: [
-                        Stack(
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(color: Colors.white),
-                              child: Padding(
-                                padding: const EdgeInsets.only(top: 50),
-                                child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(150),
-                                    child: Image.asset(
-                                      'assets/images/bacon burger.jpg',
-                                      height: 150,
-                                      width: 150,
-                                    )),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 120),
-                              child: Icon(
-                                Icons.favorite,
-                                color: Colors.red,
-                              ),
-                            ),
-                          ],
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 20),
-                          child: Text(
-                            "Bacon Burger",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, color: Colors.black),
-                          ),
-                        ),
-                        Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: List.generate(
-                            5,
-                                (index) {
-                              return Icon(
-                                Icons.star,
-                                color: Colors.yellow,
-                              );
-                            },
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: RichText(
-                            text: TextSpan(
-                              children: [
-                                TextSpan(
-                                    text: "-47 ",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)
-                                ),
-                                WidgetSpan(
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(50),
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(left: 90),
-                                      child: Container(
-                                          color: Colors.brown,
-                                          child: Icon(Icons.add, size: 25, color: Colors.white,)),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  )
-                ],
-              ),
+                        );
+                      },
+                      itemCount: jsonDecode(snapshot.data!.body.toString()).length,
+                    );
+                  } else {
+                    return Center(child: CircularProgressIndicator());
+                  }
+                },
+                future: getFood(),
+              )
             ],
           ),
         ),
@@ -541,14 +678,21 @@ class _SecondPageState extends State<SecondPage> {
                 ),
                 label: ""),
           ],
-          // onTap: (index) {
-          //   setState(() {
-          //     selectedIndex = index;
-          //   });
-          // },
         ),
       ),
     );
     throw UnimplementedError();
   }
 }
+
+Future<http.Response> getFood() async {
+  var response = await http
+      .get(Uri.parse("https://630856eb46372013f57ad4b2.mockapi.io/friends"));
+  return response;
+}
+
+Future<void> deleteFood(id) async {
+  var response1 = await http.delete(
+      Uri.parse("https://630856eb46372013f57ad4b2.mockapi.io/friends"));
+}
+
