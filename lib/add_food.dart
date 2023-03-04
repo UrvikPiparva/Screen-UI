@@ -1,3 +1,5 @@
+
+import 'package:assigment_project/third_page.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -112,7 +114,12 @@ class _AddFoodState extends State<AddFood> {
                           if (_formKey.currentState!.validate()) {
                             if (widget.map == null) {
                               addFood().then(
-                                    (value) => Navigator.of(context).pop(true),
+                                    (value) => Navigator.of(context)
+                                    .push(MaterialPageRoute(
+                                  builder: (context) {
+                                    return ThirdPage();
+                                  },
+                                )),
                               );
                             } else {
                               updateFood(widget.map!['id']).then(
@@ -146,7 +153,7 @@ class _AddFoodState extends State<AddFood> {
     map['avatar'] = foodImageController.text;
 
     var response1 = await http.post(
-        Uri.parse("https://630856eb46372013f57ad4b2.mockapi.io/friends"),
+        Uri.parse("https://637f5cd65b1cc8d6f942aebf.mockapi.io/food"),
         body: map);
     print(response1.body);
   }
@@ -157,7 +164,7 @@ class _AddFoodState extends State<AddFood> {
     map['avatar'] = foodImageController.text;
 
     var response1 = await http.put(
-        Uri.parse("https://630856eb46372013f57ad4b2.mockapi.io/friends/$id"),
+        Uri.parse("https://637f5cd65b1cc8d6f942aebf.mockapi.io/food/$id"),
         body: map);
     print(response1.body);
   }

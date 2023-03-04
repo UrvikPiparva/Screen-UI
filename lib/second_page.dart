@@ -1,9 +1,7 @@
-import 'dart:convert';
 import 'package:assigment_project/add_food.dart';
+import 'package:assigment_project/first_page.dart';
 import 'package:assigment_project/third_page.dart';
 import 'package:flutter/material.dart';
-import 'first_page.dart';
-import 'package:http/http.dart' as http;
 
 class SecondPage extends StatefulWidget {
   @override
@@ -11,686 +9,578 @@ class SecondPage extends StatefulWidget {
 }
 
 class _SecondPageState extends State<SecondPage> {
+  int selectedIndex = 0;
+
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          leading: IconButton(
-            onPressed: () {
-              Navigator.of(context).pop(MaterialPageRoute(
-                builder: (context) => FirstPage(),
-              ));
-            },
-            icon: Icon(
-              Icons.menu,
-              color: Colors.black,
-            ),
-          ),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(right: 110),
-              child: Center(
-                  child: Text(
-                    "HOME",
-                    style: TextStyle(color: Colors.black),
-                  )),
-            ),
+    return Scaffold(
+      backgroundColor: Color.fromARGB(255, 247, 247, 247),
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Column(
+          children: [
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Icon(
-                Icons.lock,
-                color: Colors.black,
-              ),
-            )
-          ],
-        ),
-        body: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 255, 255, 255),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.search_rounded),
-                      suffixIcon: Container(
-                        color: Colors.black,
-                        child: Icon(
-                          Icons.menu_open_outlined,
-                          color: Colors.white,
-                        ),
-                      ),
-                      hintText: 'Search',
-                      border: InputBorder.none,
-                    ),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Color.fromARGB(255, 255, 255, 255),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: TextFormField(
+                  decoration: InputDecoration(
+                    prefixIcon: Icon(Icons.search_rounded),
+                    hintText: 'Search',
+                    //label: Text("Search your food"),
+                    border: InputBorder.none,
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 30),
-                child: Row(
-                  children: const [
-                    Padding(
-                      padding: EdgeInsets.only(left: 20, right: 20),
+            ),
+            Container(
+              width: double.infinity,
+              height: 150,
+              child: Stack(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(15),
+                      child: Image.asset(
+                        'assets/images/secondpageimage.jpg',
+                        width: double.infinity,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 25, top: 30),
+                    child: Align(
+                      alignment: Alignment.topLeft,
                       child: Text(
-                        "PIZZA",
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        'BREAKFAST',
+                        style: TextStyle(
+                          fontFamily: 'Schyler',
+                          color: Colors.white,
+                          fontSize: 25,
+                        ),
                       ),
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(right: 20),
-                      child: Text("BURGER"),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 25, top: 60),
+                    child: Align(
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        'GOOD DEALS',
+                        style: TextStyle(
+                          fontFamily: 'Schyler',
+                          color: Colors.white,
+                          fontSize: 25,
+                        ),
+                      ),
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(right: 20),
-                      child: Text("DRINKS"),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 30, top: 90),
+                    child: Align(
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        'Discount up to',
+                        style: TextStyle(
+                          fontFamily: 'Schyler',
+                          color: Colors.white,
+                          fontSize: 15,
+                        ),
+                      ),
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(right: 20),
-                      child: Text("SAUCES"),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 135, top: 90),
+                    child: Align(
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        '60 %',
+                        style: TextStyle(
+                          fontFamily: 'Schyler',
+                          color: Colors.green,
+                          fontSize: 15,
+                        ),
+                      ),
                     ),
-                    Text("COMBO")
-                  ],
-                ),
+                  ),
+                ],
               ),
-              InkWell(
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                    return ThirdPage();
-                  },));
-                },
-                child: Container(
-                  width: double.infinity,
-                  height: 200,
-                  child: Stack(
+            ),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  InkWell(
+                    onTap: (){
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context){
+                        return ThirdPage();
+                      },));
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 20, 10, 0),
+                      child: Stack(
+                        children: [
+                          Container(
+                            width: 100,
+                            height: 100,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(20),
+                              child: Image.asset(
+                                'assets/images/burger image second page (1)-removebg-preview.jpg',
+                                width: 100,
+                                height: 100,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 70),
+                            child: Text(
+                              "Burger",
+                              style: TextStyle(fontSize: 20, color: Colors.white),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 20, 10, 0),
+                    child: Stack(
+                      children: [
+                        Container(
+                          width: 100,
+                          height: 100,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Image.asset(
+                              'assets/images/Taco_Crispy_Beef_990x725 (1)-removebg-preview.jpg',
+                              width: 100,
+                              height: 100,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 70),
+                          child: Text(
+                            "Taco",
+                            style: TextStyle(fontSize: 20, color: Colors.white),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 20, 10, 0),
+                    child: Stack(
+                      children: [
+                        Container(
+                          width: 100,
+                          height: 100,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Image.asset(
+                              'assets/images/suhsi (1)-removebg-preview.jpg',
+                              width: 100,
+                              height: 100,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 70),
+                          child: Text(
+                            "Sushi",
+                            style: TextStyle(fontSize: 20, color: Colors.white),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 20, 10, 0),
+                    child: Stack(
+                      children: [
+                        Container(
+                          width: 100,
+                          height: 100,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: Image.asset(
+                              'assets/images/zen-sumo-bento (1)-removebg-preview.jpg',
+                              width: 100,
+                              height: 100,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 70),
+                          child: Text(
+                            "Bento",
+                            style: TextStyle(fontSize: 20, color: Colors.white),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: Text(
+                      "Food of the Day",
+                      style:
+                      TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(right: 15),
+                    child: Text(
+                      "View all",
+                      style: TextStyle(color: Colors.green, fontSize: 10),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Row(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.all(13.0),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(15),
-                          child: Image.asset(
-                            'assets/images/burger chips on wood.jpg',
-                            width: double.infinity,
-                            fit: BoxFit.cover,
-                          ),
+                      Expanded(
+                        child: Stack(
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Colors.white,
+                              ),
+                              height: 200,
+                              width: 200,
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 10,
+                                        top: 10,
+                                        right: 10,
+                                        bottom: 70),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(20),
+                                      child: Image.asset(
+                                        'assets/images/chking.jpg',
+                                        fit: BoxFit.fill,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 80, left: 53),
+                              child: Container(
+                                width: 50,
+                                height: 50,
+                                child: Align(
+                                  alignment: Alignment.center,
+                                  child: CircleAvatar(
+                                    radius: 20,
+                                    backgroundImage: NetworkImage(
+                                      'https://www.shutterstock.com/shutterstock/photos/233098300/displa'
+                                          'y_1500/stock-photo-zagreb-croatia-november-fast-food-chain-burger-ki'
+                                          'ng-logo-printed-on-food-box-233098300.jpg',
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                              const EdgeInsets.only(left: 25, top: 140),
+                              child: Text(
+                                "Burgur King, Bali,\nKuta Rock City",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            )
+                          ],
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 25, top: 30),
-                        child: Align(
-                          alignment: Alignment.topLeft,
-                          child: Text(
-                            'Super',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 15,
-                            ),
-                          ),
-                        ),
+                      SizedBox(
+                        width: 10,
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 65, top: 15),
-                        child: Align(
-                          alignment: Alignment.topLeft,
-                          child: Text(
-                            'Delicious',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 35,
+                      Expanded(
+                        child: Stack(
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Colors.white,
+                              ),
+                              height: 200,
+                              width: 200,
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 10,
+                                        top: 10,
+                                        right: 10,
+                                        bottom: 70),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(20),
+                                      child: Image.asset(
+                                        'assets/images/three burger images (1).jpg',
+                                        fit: BoxFit.fill,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 25, top: 60),
-                        child: Align(
-                          alignment: Alignment.topLeft,
-                          child: Text(
-                            'BURGER',
-                            style: TextStyle(
-                              fontFamily: 'Schyler',
-                              color: Colors.yellow,
-                              fontSize: 45,
+                            Padding(
+                              padding: const EdgeInsets.only(top: 80, left: 53),
+                              child: Container(
+                                width: 50,
+                                height: 50,
+                                child: Align(
+                                  alignment: Alignment.center,
+                                  child: CircleAvatar(
+                                    backgroundImage: AssetImage(
+                                      'assets/images/macd.png',
+                                    ),
+                                  ),
+                                ),
+                              ),
                             ),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 25, top: 110),
-                        child: Align(
-                          alignment: Alignment.topLeft,
-                          child: Text(
-                            'Todays best deal',
-                            style: TextStyle(
-                              fontFamily: 'Schyler',
-                              color: Colors.white,
-                              fontSize: 25,
-                            ),
-                          ),
+                            Padding(
+                              padding:
+                              const EdgeInsets.only(left: 25, top: 140),
+                              child: Text(
+                                "McDonald's, Teuku,\nUmar Bali",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            )
+                          ],
                         ),
                       ),
                     ],
                   ),
                 ),
-              ),
-              // Row(
-              //   children: [
-              //     Padding(
-              //       padding: const EdgeInsets.only(top: 30, left: 20),
-              //       child: Column(
-              //         children: [
-              //           Stack(
-              //             children: [
-              //               Container(
-              //                 decoration: BoxDecoration(color: Colors.white),
-              //                 child: Padding(
-              //                   padding: const EdgeInsets.only(top: 50),
-              //                   child: ClipRRect(
-              //                       borderRadius: BorderRadius.circular(150),
-              //                       child: Image.asset(
-              //                         'assets/images/chicken brest (1).jpg',
-              //                         height: 150,
-              //                         width: 150,
-              //                       )),
-              //                 ),
-              //               ),
-              //               Padding(
-              //                 padding: const EdgeInsets.only(left: 120),
-              //                 child: Icon(
-              //                   Icons.favorite,
-              //                   color: Colors.red,
-              //                 ),
-              //               ),
-              //             ],
-              //           ),
-              //           Padding(
-              //             padding: const EdgeInsets.only(top: 20),
-              //             child: Text(
-              //               "BBQ Chicken Breast",
-              //               style: TextStyle(
-              //                   fontWeight: FontWeight.bold, color: Colors.black),
-              //             ),
-              //           ),
-              //           Row(
-              //             mainAxisSize: MainAxisSize.min,
-              //             children: List.generate(
-              //               5,
-              //                   (index) {
-              //                 return Icon(
-              //                   Icons.star,
-              //                   color: Colors.yellow,
-              //                 );
-              //               },
-              //             ),
-              //           ),
-              //           Padding(
-              //             padding: const EdgeInsets.all(8.0),
-              //             child: RichText(
-              //               text: TextSpan(
-              //                 children: [
-              //                   TextSpan(
-              //                       text: "-47 ",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)
-              //                   ),
-              //                   WidgetSpan(
-              //                     child: ClipRRect(
-              //                       borderRadius: BorderRadius.circular(50),
-              //                       child: Padding(
-              //                         padding: const EdgeInsets.only(left: 90),
-              //                         child: Container(
-              //                             color: Colors.brown,
-              //                             child: Icon(Icons.add, size: 25, color: Colors.white,)),
-              //                       ),
-              //                     ),
-              //                   ),
-              //                 ],
-              //               ),
-              //             ),
-              //           )
-              //         ],
-              //       ),
-              //     ),
-              //     // Padding(
-              //     //   padding: const EdgeInsets.only(top: 30),
-              //     //   child: Column(
-              //     //     children: [
-              //     //       Stack(
-              //     //         children: [
-              //     //           Container(
-              //     //             decoration: BoxDecoration(color: Colors.white),
-              //     //             child: Padding(
-              //     //               padding: const EdgeInsets.only(top: 50),
-              //     //               child: ClipRRect(
-              //     //                   borderRadius: BorderRadius.circular(150),
-              //     //                   child: Image.asset(
-              //     //                     'assets/images/bacon burger.jpg',
-              //     //                     height: 150,
-              //     //                     width: 150,
-              //     //                   )),
-              //     //             ),
-              //     //           ),
-              //     //           Padding(
-              //     //             padding: const EdgeInsets.only(left: 120),
-              //     //             child: Icon(
-              //     //               Icons.favorite,
-              //     //               color: Colors.red,
-              //     //             ),
-              //     //           ),
-              //     //         ],
-              //     //       ),
-              //     //       Padding(
-              //     //         padding: const EdgeInsets.only(top: 20),
-              //     //         child: Text(
-              //     //           "Bacon Burger",
-              //     //           style: TextStyle(
-              //     //               fontWeight: FontWeight.bold, color: Colors.black),
-              //     //         ),
-              //     //       ),
-              //     //       Row(
-              //     //         mainAxisSize: MainAxisSize.min,
-              //     //         children: List.generate(
-              //     //           5,
-              //     //               (index) {
-              //     //             return Icon(
-              //     //               Icons.star,
-              //     //               color: Colors.yellow,
-              //     //             );
-              //     //           },
-              //     //         ),
-              //     //       ),
-              //     //       Padding(
-              //     //         padding: const EdgeInsets.all(8.0),
-              //     //         child: RichText(
-              //     //           text: TextSpan(
-              //     //             children: [
-              //     //               TextSpan(
-              //     //                   text: "-47 ",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)
-              //     //               ),
-              //     //               WidgetSpan(
-              //     //                 child: ClipRRect(
-              //     //                   borderRadius: BorderRadius.circular(50),
-              //     //                   child: Padding(
-              //     //                     padding: const EdgeInsets.only(left: 90),
-              //     //                     child: Container(
-              //     //                         color: Colors.brown,
-              //     //                         child: Icon(Icons.add, size: 25, color: Colors.white,)),
-              //     //                   ),
-              //     //                 ),
-              //     //               ),
-              //     //             ],
-              //     //           ),
-              //     //         ),
-              //     //       )
-              //     //     ],
-              //     //   ),
-              //     // )
-              //   ],
-              // ),
-              // Row(
-              //   children: [
-              //     Padding(
-              //       padding: const EdgeInsets.only(top: 30, left: 20),
-              //       child: Column(
-              //         children: [
-              //           Stack(
-              //             children: [
-              //               Container(
-              //                 decoration: BoxDecoration(color: Colors.white),
-              //                 child: Padding(
-              //                   padding: const EdgeInsets.only(top: 50),
-              //                   child: ClipRRect(
-              //                       borderRadius: BorderRadius.circular(150),
-              //                       child: Image.asset(
-              //                         'assets/images/chicken brest (1).jpg',
-              //                         height: 150,
-              //                         width: 150,
-              //                       )),
-              //                 ),
-              //               ),
-              //               Padding(
-              //                 padding: const EdgeInsets.only(left: 120),
-              //                 child: Icon(
-              //                   Icons.favorite,
-              //                   color: Colors.red,
-              //                 ),
-              //               ),
-              //             ],
-              //           ),
-              //           Padding(
-              //             padding: const EdgeInsets.only(top: 20),
-              //             child: Text(
-              //               "BBQ Chicken Breast",
-              //               style: TextStyle(
-              //                   fontWeight: FontWeight.bold, color: Colors.black),
-              //             ),
-              //           ),
-              //           Row(
-              //             mainAxisSize: MainAxisSize.min,
-              //             children: List.generate(
-              //               5,
-              //                   (index) {
-              //                 return Icon(
-              //                   Icons.star,
-              //                   color: Colors.yellow,
-              //                 );
-              //               },
-              //             ),
-              //           ),
-              //           Padding(
-              //             padding: const EdgeInsets.all(8.0),
-              //             child: RichText(
-              //               text: TextSpan(
-              //                 children: [
-              //                   TextSpan(
-              //                       text: "-47 ",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)
-              //                   ),
-              //                   WidgetSpan(
-              //                     child: ClipRRect(
-              //                       borderRadius: BorderRadius.circular(50),
-              //                       child: Padding(
-              //                         padding: const EdgeInsets.only(left: 90),
-              //                         child: Container(
-              //                             color: Colors.brown,
-              //                             child: Icon(Icons.add, size: 25, color: Colors.white,)),
-              //                       ),
-              //                     ),
-              //                   ),
-              //                 ],
-              //               ),
-              //             ),
-              //           )
-              //         ],
-              //       ),
-              //     ),
-              //     Padding(
-              //       padding: const EdgeInsets.only(top: 30),
-              //       child: Column(
-              //         children: [
-              //           Stack(
-              //             children: [
-              //               Container(
-              //                 decoration: BoxDecoration(color: Colors.white),
-              //                 child: Padding(
-              //                   padding: const EdgeInsets.only(top: 50),
-              //                   child: ClipRRect(
-              //                       borderRadius: BorderRadius.circular(150),
-              //                       child: Image.asset(
-              //                         'assets/images/bacon burger.jpg',
-              //                         height: 150,
-              //                         width: 150,
-              //                       )),
-              //                 ),
-              //               ),
-              //               Padding(
-              //                 padding: const EdgeInsets.only(left: 120),
-              //                 child: Icon(
-              //                   Icons.favorite,
-              //                   color: Colors.red,
-              //                 ),
-              //               ),
-              //             ],
-              //           ),
-              //           Padding(
-              //             padding: const EdgeInsets.only(top: 20),
-              //             child: Text(
-              //               "Bacon Burger",
-              //               style: TextStyle(
-              //                   fontWeight: FontWeight.bold, color: Colors.black),
-              //             ),
-              //           ),
-              //           Row(
-              //             mainAxisSize: MainAxisSize.min,
-              //             children: List.generate(
-              //               5,
-              //                   (index) {
-              //                 return Icon(
-              //                   Icons.star,
-              //                   color: Colors.yellow,
-              //                 );
-              //               },
-              //             ),
-              //           ),
-              //           Padding(
-              //             padding: const EdgeInsets.all(8.0),
-              //             child: RichText(
-              //               text: TextSpan(
-              //                 children: [
-              //                   TextSpan(
-              //                       text: "-47 ",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)
-              //                   ),
-              //                   WidgetSpan(
-              //                     child: ClipRRect(
-              //                       borderRadius: BorderRadius.circular(50),
-              //                       child: Padding(
-              //                         padding: const EdgeInsets.only(left: 90),
-              //                         child: Container(
-              //                             color: Colors.brown,
-              //                             child: Icon(Icons.add, size: 25, color: Colors.white,)),
-              //                       ),
-              //                     ),
-              //                   ),
-              //                 ],
-              //               ),
-              //             ),
-              //           )
-              //         ],
-              //       ),
-              //     )
-              //   ],
-              // ),
-              FutureBuilder<http.Response>(
-                builder: (context, snapshot) {
-                  if (snapshot != null && snapshot.hasData) {
-                    return ListView.builder(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemBuilder: (context, index) {
-                        return InkWell(
-                          onTap: () {
-                            Navigator.of(context)
-                                .push(
-                              MaterialPageRoute(
-                                builder: (context) => AddFood(
-                                    jsonDecode(snapshot.data!.body.toString())[index]),
+                Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Stack(
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Colors.white,
+                              ),
+                              height: 200,
+                              width: 200,
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 10,
+                                        top: 10,
+                                        right: 10,
+                                        bottom: 70),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(20),
+                                      child: Image.asset(
+                                        'assets/images/macd ice cream.jpg',
+                                        fit: BoxFit.fill,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 80, left: 53),
+                              child: Container(
+                                width: 50,
+                                height: 50,
+                                child: Align(
+                                  alignment: Alignment.center,
+                                  child: CircleAvatar(
+                                    radius: 20,
+                                    backgroundImage: AssetImage(
+                                      'assets/images/macd.png',
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                              const EdgeInsets.only(left: 25, top: 140),
+                              child: Text(
+                                "Ice Cream,\nIce cream",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                textAlign: TextAlign.center,
                               ),
                             )
-                                .then(
-                                  (value) {
-                                if (value == true) {
-                                  setState(() {});
-                                }
-                              },
-                            );
-                          },
-                          child: Column(
-                            children: [
-                              Container(
-                                padding: EdgeInsets.all(20),
-                                decoration: BoxDecoration(
-                                  // borderRadius: BorderRadius.circular(20)
-                                ),
-                                height: 200,
-                                width: double.infinity,
-                                child: Image(
-                                    image: NetworkImage((jsonDecode(
-                                        snapshot.data!.body.toString())[index]
-                                    ['avatar'])
-                                        .toString())),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Expanded(
+                        child: Stack(
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Colors.white,
                               ),
-                              Text(
-                                (jsonDecode(snapshot.data!.body.toString())[index]
-                                ['name'])
-                                    .toString(),
+                              height: 200,
+                              width: 200,
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 10,
+                                        top: 10,
+                                        right: 10,
+                                        bottom: 70),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(20),
+                                      child: Image.asset(
+                                        'assets/images/kfc chicken (1) (1).jpg',
+                                        fit: BoxFit.fill,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 100, left: 53),
+                              child: Container(
+                                width: 50,
+                                height: 50,
+                                child: Align(
+                                  alignment: Alignment.center,
+                                  child: CircleAvatar(
+                                    backgroundImage: AssetImage(
+                                      'assets/images/kfc logo.png',
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                              const EdgeInsets.only(left: 25, top: 140),
+                              child: Text(
+                                "KFC \n Chicken",
                                 style: TextStyle(
-                                  fontWeight: FontWeight.w900,
-                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
                                 ),
+                                textAlign: TextAlign.center,
                               ),
-                              Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: List.generate(
-                                  5,
-                                      (index) {
-                                    return Icon(
-                                      Icons.star,
-                                      color: Colors.yellow,
-                                    );
-                                  },
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    InkWell(
-                                      onTap: () {
-                                        Navigator.of(context)
-                                            .push(
-                                          MaterialPageRoute(
-                                            builder: (context) => AddFood(jsonDecode(
-                                                snapshot.data!.body.toString())[index]),
-                                          ),
-                                        )
-                                            .then(
-                                              (value) {
-                                            if (value == true) {
-                                              setState(() {});
-                                            }
-                                          },
-                                        );
-                                      },
-                                      child: Container(
-                                        padding: EdgeInsets.all(15),
-                                        margin: EdgeInsets.all(10),
-                                        decoration: BoxDecoration(
-                                          // borderRadius: BorderRadius.circular(20),
-                                            border: Border.all(),
-                                            color: Colors.green),
-                                        child: Text(
-                                          "Edit",
-                                          style: TextStyle(color: Colors.white),
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 15,
-                                    ),
-                                    InkWell(
-                                      onTap: () {
-                                        deleteFood((jsonDecode(snapshot.data!.body
-                                            .toString())[index]['id']))
-                                            .then(
-                                              (value) {
-                                            setState(() {});
-                                          },
-                                        );
-                                      },
-                                      child: Container(
-                                        padding: EdgeInsets.all(15),
-                                        margin: EdgeInsets.all(10),
-                                        decoration: BoxDecoration(
-                                          // borderRadius: BorderRadius.circular(20),
-                                            border: Border.all(),
-                                            color: Colors.red),
-                                        child: Text("Delete",
-                                            style: TextStyle(color: Colors.white)),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                        );
-                      },
-                      itemCount: jsonDecode(snapshot.data!.body.toString()).length,
-                    );
-                  } else {
-                    return Center(child: CircularProgressIndicator());
-                  }
-                },
-                future: getFood(),
-              )
-            ],
-          ),
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
-          items: [
-            BottomNavigationBarItem(
-                icon: IconButton(
-                  onPressed: () {
-                    Navigator.of(context).pop(MaterialPageRoute(
-                      builder: (context) => FirstPage(),
-                    ));
-                  },
-                  icon: Icon(Icons.arrow_back_ios, color: Colors.black,),
-                ),
-                label: "Bacck to home page"),
-            BottomNavigationBarItem(
-                icon: IconButton(
-                  onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => ThirdPage(),
-                    ));
-                  },
-                  icon: Icon(Icons.arrow_forward_ios, color: Colors.black,),
-                ),
-                label: "Move to third page"),
-            BottomNavigationBarItem(
-                icon: IconButton(
-                  onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => ThirdPage(),
-                    ));
-                  },
-                  icon: Icon(
-                    Icons.add,
-                    color: Colors.black,
+                            )
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                label: ""),
-            BottomNavigationBarItem(
-                icon: IconButton(
-                  onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => ThirdPage(),
-                    ));
-                  },
-                  icon: Icon(
-                    Icons.doorbell_outlined,
-                    color: Colors.black,
-                  ),
-                ),
-                label: ""),
+              ],
+            ),
           ],
         ),
       ),
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        items: [
+          BottomNavigationBarItem(
+              icon: IconButton(
+                onPressed: () {
+                  Navigator.of(context).pop(MaterialPageRoute(
+                    builder: (context) => FirstPage(),
+                  ));
+                },
+                icon: Icon(Icons.arrow_back_ios, color: Colors.black,),
+              ),
+              label: "Back to home page"),
+          BottomNavigationBarItem(
+              icon: IconButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => ThirdPage(),
+                  ));
+                },
+                icon: Icon(Icons.arrow_forward_ios, color: Colors.black,),
+              ),
+              label: "Move to third page"),
+          BottomNavigationBarItem(
+              icon: IconButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => AddFood(null),
+                  ));
+                },
+                icon: Icon(
+                  Icons.add,
+                  color: Colors.black,
+                ),
+              ),
+              label: ""),
+          BottomNavigationBarItem(
+              icon: IconButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => ThirdPage(),
+                  ));
+                },
+                icon: Icon(
+                  Icons.mail,
+                  color: Colors.black,
+                ),
+              ),
+              label: ""),
+        ],
+        onTap: (index) {
+          setState(() {
+            selectedIndex = index;
+          });
+        },
+      ),
     );
-    throw UnimplementedError();
   }
 }
-
-Future<http.Response> getFood() async {
-  var response = await http
-      .get(Uri.parse("https://637f5cd65b1cc8d6f942aebf.mockapi.io/food"));
-  return response;
-}
-
-Future<void> deleteFood(id) async {
-  var response1 = await http.delete(
-      Uri.parse("https://637f5cd65b1cc8d6f942aebf.mockapi.io/food/$id"));
-}
-
