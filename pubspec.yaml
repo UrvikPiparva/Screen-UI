@@ -1,4 +1,4 @@
-name: assigment_project
+name: assignment_project_urvik
 description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
@@ -20,7 +20,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: '>=2.18.6 <3.0.0'
+  sdk: '>=2.18.5 <3.0.0'
 
 # Dependencies specify other packages that your package needs in order to work.
 # To automatically upgrade your package dependencies to the latest versions
@@ -32,6 +32,7 @@ dependencies:
   flutter:
     sdk: flutter
   http: ^0.13.5
+
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -62,12 +63,12 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-     - assets/images/bacon burger.jpg
-     - assets/images/burger chips on wood.jpg
-     - assets/images/burger multiple layer page 3.jpg
-     - assets/images/burger page 3-removebg-preview.jpg
-     - assets/images/chef page 1.png
-     - assets/images/chicken brest (1).jpg
+    - assets/images/chef page 1.png
+    - assets/images/burger chips on wood.jpg
+    - assets/images/chicken brest (1).jpg
+    - assets/images/bacon burger.jpg
+    - assets/images/burger page 3-removebg-preview.jpg
+    - assets/images/burger multiple layer page 3.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
@@ -80,10 +81,10 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
+  fonts:
+    - family: Schyler
+      fonts:
+        - asset: assets/fonts/Roboto-MediumItalic.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

@@ -1,5 +1,6 @@
-
-import 'package:assigment_project/third_page.dart';
+//import 'package:assignment_project/third_page.dart';
+import 'package:assignment_project_urvik/second_page.dart';
+import 'package:assignment_project_urvik/third_page.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -117,7 +118,7 @@ class _AddFoodState extends State<AddFood> {
                                     (value) => Navigator.of(context)
                                     .push(MaterialPageRoute(
                                   builder: (context) {
-                                    return ThirdPage();
+                                    return SecondPage();
                                   },
                                 )),
                               );

@@ -1,130 +1,66 @@
-// import 'package:assignment_project/second_page.dart';
-import 'package:assigment_project/second_page.dart';
+import 'package:assignment_project_urvik/second_page.dart';
 import 'package:flutter/material.dart';
 
 class FirstPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
+
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.black,
-          elevation: 0,
-          leading: Row(
-            //mainAxisSize: MainAxisSize.min,
-            children: List.generate(
-              3,
-                  (index) {
-                return Icon(
-                  Icons.remove,
-                  color: Colors.white,
-                  size: 15,
-                );
-              },
-            ),
-          ),
-          actions: [
-            ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      "skip",
-                      style: TextStyle(color: Colors.white),
-                    )))
-          ],
-        ),
-        body: Column(
-          children: [
-            Expanded(
-              child: Stack(
-                fit: StackFit.expand,
-                children: [
-                  Image.asset(
-                    "assets/images/burgerimage.jpg",
-                    fit: BoxFit.fitHeight,
+        body: Container(
+          padding: EdgeInsets.only(top: 80),
+          child: Column(
+            children: [
+              Center(
+                  child: Image.asset(
+                    'assets/images/chef page 1.png',
+                    height: 300,
+                    width: 300,
+                  )),
+              Text(
+                "The Fastesst \nFood Delivery",
+                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: Text(
+                  'Lorem ipsum dolor sit amet, consetetur \nsedipscing elir, sed diam nonumy',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 50),
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => SecondPage()),
+                    );
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                        left: 20, right: 20, top: 10, bottom: 10),
+                    child: Text('Get Started',
+                        style: TextStyle(color: Colors.white, fontSize: 15)),
                   ),
-                  // Container(
-                  //   decoration: BoxDecoration(
-                  //     borderRadius: BorderRadius.circular(30)
-                  //   ),
-                  //   child: Align(
-                  //     alignment: Alignment.topRight,
-                  //     child: TextButton(onPressed: () {}, child: Text("skip",style: TextStyle(color: Colors.white),)),
-                  //   ),
-                  // ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 30),
-                    child: Column(
-                      children: [
-                        Container(
-                          child: Text(
-                            "LESS TALK,",
-                            style: TextStyle(
-                                fontSize: 40,
-                                fontFamily: 'Schyler',
-                                //fontWeight: FontWeight.bold,
-                                color: Colors.white),
-                          ),
-                          alignment: Alignment.topCenter,
-                        ),
-                        Container(
-                          child: Text(
-                            "EAT MORE.",
-                            style: TextStyle(
-                                fontSize: 40,
-                                fontFamily: 'Schyler',
-                                //fontWeight: FontWeight.bold,
-                                color: Colors.green),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: Text(
-                            "Delivery solution in phone",
-                            style: TextStyle(
-                              fontSize: 15,
-                              color: Colors.white,
-                              //    fontFamily: 'Trajan'
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 15),
-                          child: ElevatedButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => SecondPage()),
-                              );
-                            },
-                            child: Text('Get Started',
-                                style: TextStyle(
-                                    color: Colors.black, fontSize: 9)),
-                            style: ButtonStyle(
-                              backgroundColor:
-                              MaterialStateProperty.all(Colors.white),
-                              shape: MaterialStateProperty.all(
-                                RoundedRectangleBorder(
-                                  // Change your radius here
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                              ),
-                            ),
-                          ),
-                        )
-                      ],
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(Colors.brown),
+                    shape: MaterialStateProperty.all(
+                      RoundedRectangleBorder(
+                        // Change your radius here
+                        borderRadius: BorderRadius.circular(20),
+                      ),
                     ),
                   ),
-                ],
-              ),
-            )
-          ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
+
     throw UnimplementedError();
   }
 }
